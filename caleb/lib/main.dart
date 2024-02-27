@@ -1,3 +1,4 @@
+import 'package:bonvoyage/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'user_registration/user_registration_page.dart'; // Import the UserRegistrationPage
 
@@ -32,7 +33,7 @@ class MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     UserRegistrationPage(),
-    Text('Placeholder Page'), // Placeholder for the second page
+    LoginPage(), // Placeholder for the second page
   ];
 
   void _onItemTapped(int index) {
@@ -51,12 +52,12 @@ class MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.power_input_sharp),
+            label: 'Register',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.login_sharp),
+            label: 'Login',
           ),
         ],
         currentIndex: _selectedIndex,

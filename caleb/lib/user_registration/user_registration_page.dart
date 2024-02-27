@@ -1,6 +1,22 @@
+/// This file contains the implementation of the UserRegistrationPage widget.
+/// The UserRegistrationPage is a form that allows users to register an account.
+/// It includes fields for name, email, password, confirm password, phone number, and address.
+/// The form validates the input fields and enables the register button only when all fields are valid.
+/// The UserRegistrationPage also includes a cached network image and a link to navigate to the login page.
+///
+/// Example usage:
+/// ```dart
+/// UserRegistrationPage(
+///   key: Key('user_registration_page'),
+/// )
+/// ```
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+/// A page for user registration.
+/// 
+/// This page displays a form for users to register their information.
 class UserRegistrationPage extends StatefulWidget {
   const UserRegistrationPage({Key? key}) : super(key: key);
 
@@ -8,6 +24,10 @@ class UserRegistrationPage extends StatefulWidget {
   UserRegistrationPageState createState() => UserRegistrationPageState();
 }
 
+/// The state class for the UserRegistrationPage widget.
+/// 
+/// This class manages the state of the UserRegistrationPage widget, including the form fields and validation logic.
+/// It also handles the disposal of text controllers and enables/disables the register button based on form validation.
 class UserRegistrationPageState extends State<UserRegistrationPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
@@ -19,17 +39,19 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 
   bool _isRegisterButtonEnabled = false;
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    _phoneNumberController.dispose();
-    _addressController.dispose();
-    super.dispose();
-  }
+  /// Disposes all the controllers used in the user registration page.
+    @override
+    void dispose() {
+      _nameController.dispose();
+      _emailController.dispose();
+      _passwordController.dispose();
+      _confirmPasswordController.dispose();
+      _phoneNumberController.dispose();
+      _addressController.dispose();
+      super.dispose();
+    }
 
+  /// Validates the form fields and updates the state of the register button.
   void _validateFields() {
     setState(() {
       _isRegisterButtonEnabled = _formKey.currentState?.validate() ?? false;
@@ -51,7 +73,8 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
               flex: 1,
               child: CachedNetworkImage(
                 imageUrl: 'https://images2.imgbox.com/f9/03/Oau9uKBc_o.png',
-                placeholder: (context, url) => const CircularProgressIndicator(),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
@@ -73,6 +96,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        key: const Key('name_field'),
                         controller: _nameController,
                         decoration: const InputDecoration(
                           labelText: 'Name',
@@ -86,6 +110,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        key: const Key('email_field'),
                         controller: _emailController,
                         decoration: const InputDecoration(
                           labelText: 'Email',
@@ -100,6 +125,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        key: const Key('password_field'),
                         controller: _passwordController,
                         decoration: const InputDecoration(
                           labelText: 'Password',
@@ -115,6 +141,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        key: const Key('confirm_password_field'),
                         controller: _confirmPasswordController,
                         decoration: const InputDecoration(
                           labelText: 'Confirm Password',
@@ -132,6 +159,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        key: const Key('phone_number_field'),
                         controller: _phoneNumberController,
                         decoration: const InputDecoration(
                           labelText: 'Phone Number',
@@ -146,6 +174,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
                       ),
                       const SizedBox(height: 16),
                       TextFormField(
+                        key: const Key('address_field'),
                         controller: _addressController,
                         decoration: const InputDecoration(
                           labelText: 'Address',
